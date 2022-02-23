@@ -9,6 +9,7 @@ import { TodoServicesService } from 'src/app/services/todo-services.service';
 })
 export class TodoListComponent implements OnInit {
   todos: Todos[] = [];
+  newTodo: Todos = new Todos();
   title: any;
   p: number = 1;
   constructor(private _todosService: TodoServicesService) {}
@@ -24,13 +25,35 @@ export class TodoListComponent implements OnInit {
   }
 
   search() {
-    if(this.title === "") {
+    if (this.title === '') {
       this.ngOnInit();
+    } else {
+      this.todos = this.todos.filter((res) => {
+        return res.title != null
+          ? res.title.toLocaleLowerCase().match(this.title.toLocaleLowerCase())
+          : '';
+      });
     }
-    else{      
-      this.todos = this.todos.filter(res => {
-        return (res.title != null) ? res.title.toLocaleLowerCase().match(this.title.toLocaleLowerCase()) : "" 
-      })
-    }
+  }
+
+  key: string = 'id';
+  reverse: boolean = false;
+  sort(key: string){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  onSubmit() {
+    this.newTodo.state = true;
+    this.newTodo.createdAt = new Date();
+    console.log(this.newTodo);
+
+    this._todosService.addTodo(this.newTodo).subscribe({
+      complete: () => {
+        console.log('User Added Sucessfully');
+        this.getTodos();
+      },
+      error: (error) => console.log(error),
+    });
   }
 }

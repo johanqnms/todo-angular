@@ -1,2 +1,104 @@
-table 
+table
+  margin-top: 10px
   width: 100%
+
+  td
+    text-align: center
+
+.icon-delete
+  color: #EF0C0C
+
+.table-head
+  color: #11766A
+  font-size: 16px
+
+header
+  display: flex
+  justify-content: center
+  padding: 10px
+
+main
+  font-family: 'Roboto', sans-serif
+
+.new-todo-container
+  width: 100vw
+  background-color: #01CEB6
+  display: flex
+  flex-direction: column
+  gap: 20px
+  height: 120px
+  justify-content: center
+
+  .new-todo-title
+    width: 70vw
+    margin: 0 auto
+    color: white
+
+    .title-plus
+      font-weight: bold
+      font-size: 20px
+
+  .new-todo
+    width: 70vw
+    margin: 0 auto
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-content: center
+
+    .btn-todo
+      border-radius: 15px
+
+    input
+      border: 0
+      border-bottom: 1px solid white
+      background-color: #01CEB6
+      width: 50%
+    ::placeholder
+      color: #FFFFFF99
+      opacity: 1
+      padding: 10px
+    input:focus
+      padding-left: 30px
+      outline: none !important
+      border: none
+      box-shadow: 0 0 10px #719ECE
+
+.todo-list-container
+  width: 70vw
+  margin: 0 auto
+
+  .list-navbar-title
+    color: #4B9F8E
+    font-size: 22px
+
+.todo-list-navbar
+  margin-top: 20px
+
+  display: flex
+  justify-content: space-between
+
+.input-search
+  border-radius: 15px
+  width: 40%
+  height: 30px
+  padding: 10px
+  border: 2px #0EC4C4 solid
+
+.repo
+  display: flex
+  flex-direction: row
+  justify-content: right
+
+  img
+    height: 70px
+
+.task
+  display: flex
+  justify-content: center
+
+  .task-title
+    color: white
+    width: 180px
+
+  .task-check

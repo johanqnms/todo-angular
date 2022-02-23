@@ -1,24 +1,63 @@
-<h1>API Rest Demo</h1>
-<nav class="navbar">
-  <input class="form-control" type="text" name="title" 
-  [(ngModel)]="title" (ngModelChange)="search()" placeholder="Enter the title to search" />
-</nav>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <td>Title</td>
-      <td>Created at</td>
-      <td>State</td>
-      <td>Id</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let todo of todos | paginate: {itemsPerPage: 12,currentPage:p};">
-      <td>{{ todo.title }}</td>
-      <td>{{ todo.createdAt }}</td>
-      <td>{{ todo.state }}</td>
-      <td>{{ todo.id }}</td>
-    </tr>
-  </tbody>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
-</table>
+<header><img src="../../../assets/img/logo.png" alt="Logo" /></header>
+<main>
+  <div class="new-todo-container">
+    <div class="new-todo-title">
+      <span class="title-plus">+</span> Nueva Tarea
+    </div>
+    <form (ngSubmit)="onSubmit()" class="new-todo">
+      <input
+        placeholder="Ingrese titulo"
+        name="todo-title"
+        [(ngModel)]="newTodo.title"
+      />
+      <span class="task"><span class="task-title">Tarea completada</span><input class="task-check" type="checkbox" /></span>
+      <button type="submit" class="btn btn-light btn-todo">
+        + Guardar Tarea
+      </button>
+    </form>
+  </div>
+  <div class="todo-list-container">
+    <div class="navbar todo-list-navbar">
+      <span class="list-navbar-title">Lista de Tareas</span>
+      <input
+        class="input-search"
+        type="text"
+        name="title"
+        [(ngModel)]="title"
+        (ngModelChange)="search()"
+        placeholder="Buscar..."
+      />
+    </div>
+    <table class="table table-bordered">
+      <thead class="table-head">
+        <tr>
+          <th (click)="sort('id')">Id&nbsp;<i class="fa-solid fa-sort"></i></th>
+          <th>Mis Tareas</th>
+          <th [width]="150">Completada</th>
+          <th [width]="150">Borrar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let todo of todos | paginate: { itemsPerPage: 12, currentPage: p }
+          "
+        >
+          <td>{{ todo.id }}</td>
+          <td>{{ todo.title }}</td>
+          <td *ngIf="todo.state; else unChecked">
+            <input class="checkbox-checked" type="checkbox" checked />
+          </td>
+          <ng-template #unChecked
+            ><td><input type="checkbox" /></td>
+          </ng-template>
+          <td><span class="material-icons icon-delete">delete</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <div class="repo">
+    <a href="#"> <img src="../../../assets/img/github.png" alt="Repo" /></a>
+  </div>
+</main>
