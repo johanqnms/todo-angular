@@ -6,6 +6,15 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatTableModule} from '@angular/material/table';
+
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {Ng2OrderModule} from 'ng2-order-pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +24,13 @@ import { TodoListComponent } from './pages/todo-list/todo-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

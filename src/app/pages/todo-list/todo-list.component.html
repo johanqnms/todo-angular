@@ -1,20 +1,24 @@
-<p>todo-list works!</p>
-
-<table>
-    <thead>
-        <tr>
-            <td>Title</td>
-            <td>Created at</td>
-            <td>State</td>
-            <td>Id</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let todo of todos">
-            <td>{{todo.title}}</td>
-            <td>{{todo.createdAt}}</td>
-            <td>{{todo.state}}</td>
-            <td>{{todo.id}}</td>
-        </tr>
-    </tbody>
+<h1>API Rest Demo</h1>
+<nav class="navbar">
+  <input class="form-control" type="text" name="title" 
+  [(ngModel)]="title" (ngModelChange)="search()" placeholder="Enter the title to search" />
+</nav>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Created at</td>
+      <td>State</td>
+      <td>Id</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of todos | paginate: {itemsPerPage: 12,currentPage:p};">
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.createdAt }}</td>
+      <td>{{ todo.state }}</td>
+      <td>{{ todo.id }}</td>
+    </tr>
+  </tbody>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </table>

@@ -9,6 +9,8 @@ import { TodoServicesService } from 'src/app/services/todo-services.service';
 })
 export class TodoListComponent implements OnInit {
   todos: Todos[] = [];
+  title: any;
+  p: number = 1;
   constructor(private _todosService: TodoServicesService) {}
 
   ngOnInit(): void {
@@ -19,5 +21,16 @@ export class TodoListComponent implements OnInit {
     this._todosService.getTodos().subscribe((data) => {
       this.todos = data;
     });
+  }
+
+  search() {
+    if(this.title === "") {
+      this.ngOnInit();
+    }
+    else{      
+      this.todos = this.todos.filter(res => {
+        return (res.title != null) ? res.title.toLocaleLowerCase().match(this.title.toLocaleLowerCase()) : "" 
+      })
+    }
   }
 }
