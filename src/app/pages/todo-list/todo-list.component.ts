@@ -44,7 +44,7 @@ export class TodoListComponent implements OnInit {
   }
 
   onSubmit() {
-    this.newTodo.state = true;
+    //this.newTodo.state = true;
     this.newTodo.createdAt = new Date();
     console.log(this.newTodo);
 
@@ -55,6 +55,10 @@ export class TodoListComponent implements OnInit {
       },
       error: (error) => console.log(error),
     });
+  }
+
+  newStatus() {
+    console.log("Checkbox checked",this.newTodo.state);
   }
 
   deleteTodo(id: number) {
