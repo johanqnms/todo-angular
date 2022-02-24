@@ -12,7 +12,11 @@
       />
       <span class="task"
         ><span class="task-title">Tarea completada</span>
-        <input class="task-check" type="checkbox" name="task-check" [(ngModel)]="newTodo.state" (change)="newStatus()"
+        <input
+          class="task-check"
+          type="checkbox"
+          name="task-check"
+          [(ngModel)]="newTodo.state"
       /></span>
       <button type="submit" class="btn btn-light btn-todo">
         + Guardar Tarea
@@ -47,15 +51,29 @@
           "
         >
           <td>{{ todo.id }}</td>
-          <td *ngIf="todo.state; else unCheckedTitle" class="strikethrough">{{ todo.title }}</td>
+          <td *ngIf="todo.state; else unCheckedTitle" class="strikethrough">
+            {{ todo.title }}
+          </td>
           <ng-template #unCheckedTitle
             ><td>{{ todo.title }}</td>
           </ng-template>
           <td *ngIf="todo.state; else unChecked">
-            <input class="checkbox-checked" type="checkbox" checked />
+            <input
+              class="checkbox-checked"
+              type="checkbox"
+              checked
+              [(ngModel)]="todo.state"
+              (change)="updateTodo(todo)"
+            />
           </td>
           <ng-template #unChecked
-            ><td><input type="checkbox" /></td>
+            ><td>
+              <input
+                type="checkbox"
+                [(ngModel)]="todo.state"
+                (change)="updateTodo(todo)"
+              />
+            </td>
           </ng-template>
           <td>
             <span

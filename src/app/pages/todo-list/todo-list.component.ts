@@ -57,8 +57,15 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  newStatus() {
-    console.log("Checkbox checked",this.newTodo.state);
+  updateTodo(todo: Todos) {
+    console.log("Checkbox checked", todo);
+    this._todosService.updateTodo(todo.id,todo).subscribe({
+      complete: () => {
+        console.info('User updated Sucessfully');
+        this.getTodos();
+      },
+      error: (e) => console.error(e),
+    })
   }
 
   deleteTodo(id: number) {
