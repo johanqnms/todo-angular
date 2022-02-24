@@ -51,7 +51,7 @@
           <ng-template #unChecked
             ><td><input type="checkbox" /></td>
           </ng-template>
-          <td><span class="material-icons icon-delete">delete</span></td>
+          <td><span class="material-icons icon-delete" (click)="deleteTodo(todo.id)">delete</span></td>
         </tr>
       </tbody>
     </table>

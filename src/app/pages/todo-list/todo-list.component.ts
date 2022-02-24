@@ -38,7 +38,7 @@ export class TodoListComponent implements OnInit {
 
   key: string = 'id';
   reverse: boolean = false;
-  sort(key: string){
+  sort(key: string) {
     this.key = key;
     this.reverse = !this.reverse;
   }
@@ -54,6 +54,17 @@ export class TodoListComponent implements OnInit {
         this.getTodos();
       },
       error: (error) => console.log(error),
+    });
+  }
+
+  deleteTodo(id: number) {
+    console.log(id);
+    this._todosService.deleteUser(id).subscribe({
+      complete: () => {
+        console.log('User deleted');
+        this.getTodos();
+      },
+      error: () => console.error(),
     });
   }
 }
